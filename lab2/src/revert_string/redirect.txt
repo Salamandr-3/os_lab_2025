@@ -1,0 +1,39 @@
+    1  cd lab2/src/swap
+    2  ./main.c
+    3  gcc
+    4  gcc main.c
+    5  gcc main.c swap.h swap.c
+    6  gcc main.c swap.h swap.c -o swap_result
+    7  ./swap_result
+    8  gcc main.c revert_string.c revert_string.h -o res
+    9  cd ..
+   10  cd revert_string
+   11  gcc main.c revert_string.c revert_string.h -o res
+   12  ./res
+   13  ./res abcds
+   14  ./res 1
+   15  ./res 12
+   16  gcc revert_string.c -o revert_string.o
+   17  gcc -c revert_string.c -o revert_string.o
+   18  ar rcs librevert.a revert_string.o
+   19  gcc main.c -I. -L -lrevert -o static_program
+   20  mkdir -p libstatic
+   21  mv librevert.a libstatic/
+   22  gcc -c main.c -o main.o
+   23  gcc   main.o  -L./libstatic -lrevert -o statically-linked
+   24  ./statically-linked
+   25  ./statically-linked 23
+   26  gcc -shared -o librevert.so revert_string.o
+   27  mkdir -p libdynamic
+   28  mv librevert.so libdynamic/
+   29  gcc  main.o -L./libdynamic -lrevert -o use-shared-library
+   30  ./use-shared-library 23
+   31  gcc main.o -L./libdynamic -lrevert -o use-shared-library
+   32  ./use-shared-library
+   33  gcc -c main.c -o main.o
+   34  gcc -shared -o librevert.so revert_string.o
+   35  gcc main.o -L./libdynamic -lrevert -o use-shared-library
+   36  ./use-shared-library
+   37  export LD_LIBRARY_PATH=./libdynamic:$LD_LIBRARY_PATH
+   38  ./use-shared-library 23
+   39  history > redirect.txt
