@@ -1,12 +1,15 @@
 CC=gcc
 CFLAGS=-I.
-TARGETS=sequential_min_max parallel_min_max find_min_max.o utils.o
+TARGETS=sequential_min_max sequential_exec parallel_min_max find_min_max.o utils.o
 ALL_TARGETS=$(TARGETS)
 
 all: $(ALL_TARGETS)
 
 sequential_min_max : utils.o find_min_max.o utils.h find_min_max.h
 	$(CC) -o sequential_min_max find_min_max.o utils.o sequential_min_max.c $(CFLAGS)
+
+sequential_exec : utils.o find_min_max.o utils.h find_min_max.h
+	$(CC) -o sequential_exec find_min_max.o utils.o sequential_exec.c $(CFLAGS)
 
 parallel_min_max : utils.o find_min_max.o utils.h find_min_max.h
 	$(CC) -o parallel_min_max utils.o find_min_max.o parallel_min_max.c $(CFLAGS)
