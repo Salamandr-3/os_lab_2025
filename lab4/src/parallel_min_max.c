@@ -166,7 +166,7 @@ int main(int argc, char **argv) {
                 return 0;
             }
         } else {
-            printf("Fork failed!\n");
+            printf("Fork failed!\n");   
             return 1;
         }
     }

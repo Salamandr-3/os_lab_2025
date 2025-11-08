@@ -19,7 +19,11 @@ int showit(); /* Function prototype */
 
 main() {
   int i = 0; /* Automatic variable */
-
+  int v = 3;
+  printf("Code is at %8X \n", (void *)main);
+  printf("Stack is at %8X \n", (void *)&v);
+  printf("Heap is at %8X \n", malloc(8));
+  
   /* Printing addressing information */
   printf("\nAddress etext: %8X \n", &etext);
   printf("Address edata: %8X \n", &edata);
